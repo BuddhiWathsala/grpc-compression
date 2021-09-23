@@ -27,7 +27,9 @@ func (s *server) Hello(ctx context.Context, in *wrapperspb.StringValue) (*wrappe
 }
 
 func main() {
-	s := grpc.NewServer()
+	maxInMsgSizeOption := grpc.MaxRecvMsgSize(6455878)
+	maxOutMsfSizeOption := grpc.MaxSendMsgSize(6455878)
+	s := grpc.NewServer(maxInMsgSizeOption, maxOutMsfSizeOption)
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
