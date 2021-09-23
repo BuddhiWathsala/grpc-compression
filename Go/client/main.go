@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"time"
+	"os"
 
 
 	pb "github.com/BuddhiWathsala/grpc-compression/Go/client/stubs"
@@ -20,7 +21,7 @@ const (
 func main() {
 
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
-
+	dat, _ := os.ReadFile("../../resources/text_file.txt")
 	if err != nil {
 		log.Fatalf("Did not connect: %v", err)
 	}
@@ -32,7 +33,7 @@ func main() {
 	maxReqSizeOption := grpc.MaxCallRecvMsgSize(6455878)
 	maxResSizeOption := grpc.MaxCallSendMsgSize(6455878)
 	compressor := grpc.UseCompressor(gzip.Name)
-	r, err := c.Hello(ctx, &wrapperspb.StringValue{Value: "Hello"}, maxReqSizeOption, maxResSizeOption, compressor)
+	r, err := c.Hello(ctx, &wrapperspb.StringValue{Value: string(dat)}, maxReqSizeOption, maxResSizeOption, compressor)
 
 	if err != nil {
 		log.Fatalf("Could not greet: %v", err)
