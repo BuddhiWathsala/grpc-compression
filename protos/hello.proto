@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option go_package = "example.com/user/sec_client/stubs";
+import "google/protobuf/wrappers.proto";
+
+service HelloWorldService {
+  rpc hello(google.protobuf.StringValue) returns (google.protobuf.StringValue) {}
+}
