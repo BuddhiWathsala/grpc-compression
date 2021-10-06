@@ -44,6 +44,7 @@ public class HelloWorldServer {
             throws InterruptedException, IOException {
 
         HelloWorldServer server = new HelloWorldServer();
+        System.out.println("Starting the server on port: " + PORT);
         server.start();
         server.blockUntilShutdown();
     }
