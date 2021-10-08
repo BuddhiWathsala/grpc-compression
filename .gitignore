@@ -1,6 +1,9 @@
 Go/client/client
 Go/server/server
 
+Ballerina/server/Dependencies.toml
+Ballerina/client/Dependencies.toml
+
 # Compiled class file
 *.class
 
